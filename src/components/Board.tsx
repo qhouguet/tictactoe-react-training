@@ -1,7 +1,21 @@
+import { useGameContext } from '../hooks/useGameContext';
+import { Cell } from './Cell';
+
 export function Board() {
-    return <table>
-        <tbody>
-            {/* Call the Cell component here */}
-        </tbody>
-    </table>;
+	const { board } = useGameContext();
+	// const board = gameContext.board;
+
+	return (
+		<table>
+			<tbody>
+				{board.map((row, x) => (
+					<tr key={x}>
+						{row.map((_, y) => (
+							<Cell key={y} x={x} y={y} />
+						))}
+					</tr>
+				))}
+			</tbody>
+		</table>
+	);
 }
