@@ -3,7 +3,6 @@ import { Cell } from './Cell';
 
 export function Board() {
 	const { board } = useGameContext();
-	// const board = gameContext.board;
 
 	return (
 		<table>

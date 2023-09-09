@@ -7,11 +7,22 @@ type Props = {
 
 export function Cell({ x, y }: Props) {
 	const handleClick = () => {
-		console.log(cellValue, x, y);
+		updateBoard(x, y, player);
+		updatePlayer();
+		updateMove();
+
+		const winner = checkWinner();
+
+		if (winner !== null) {
+			console.log(winner + ' wins');
+		} else if (winner === null && move <= 0) {
+			console.log("it's a tie");
+		}
 	};
 
-	const gameContext = useGameContext();
-	const cellValue = gameContext.board[x][y];
+	const { board, updateBoard, player, updatePlayer, checkWinner, move, updateMove } =
+		useGameContext();
+	const cellValue = board[x][y];
 
 	return <td onClick={handleClick} data-value={cellValue} />;
 }
