@@ -22,6 +22,7 @@ export function Cell({ x, y }: Props) {
 
 	const { board, updateBoard, player, updatePlayer, checkWinner, move, updateMove } =
 		useGameContext();
+
 	const cellValue = board[x][y];
 
 	return <td onClick={handleClick} data-value={cellValue} />;

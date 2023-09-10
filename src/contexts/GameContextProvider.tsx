@@ -37,8 +37,8 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 	};
 
 	const checkWinner = () => {
-		for (const test of winningCondition) {
-			const [firstCell, secondCell, thirdCell] = test;
+		for (const condition of winningCondition) {
+			const [firstCell, secondCell, thirdCell] = condition;
 
 			const firstCellValue = board[firstCell[0]][firstCell[1]];
 			const secondCellValue = board[secondCell[0]][secondCell[1]];
