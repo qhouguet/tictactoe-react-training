@@ -1,9 +1,11 @@
-import {Board} from "./components/Board.tsx";
+import { Board } from './components/Board.tsx';
+import { Winner } from './components/Winner.tsx';
 
 export function App() {
-  return (
-    <>
-      <Board />
-    </>
-  )
+	return (
+		<div className="game-container">
+			<Winner />
+			<Board />
+		</div>
+	);
 }

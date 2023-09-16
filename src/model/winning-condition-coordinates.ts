@@ -1,4 +1,4 @@
-export const winningCondition = [
+export const winningConditionCoordinates = [
 	[
 		[0, 0],
 		[0, 1],

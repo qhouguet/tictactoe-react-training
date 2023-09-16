@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useState } from 'react';
 import { GameBoardModel } from '../model/game-board.model.ts';
 import { CellValueEnum } from '../model/cell-value.enum.ts';
-import { winningCondition } from '../model/winning-condition.ts';
+import { winningConditionCoordinates } from '../model/winning-condition-coordinates.ts';
 
 export type GameContextModel = {
 	board: GameBoardModel;
@@ -9,8 +9,9 @@ export type GameContextModel = {
 	player: CellValueEnum;
 	updatePlayer: () => void;
 	checkWinner: () => CellValueEnum | null;
-	move: number;
-	updateMove: () => void;
+	isGameWon: boolean;
+	checkEndGame: (value: CellValueEnum | null) => void;
+	endMessage: string;
 };
 
 const emptyGameBoard: GameBoardModel = [
@@ -23,26 +24,59 @@ export const GameContext = createContext<GameContextModel | undefined>(undefined
 
 export function GameContextProvider({ children }: PropsWithChildren) {
 	const [board, setBoard] = useState(emptyGameBoard);
+	const [player, setPlayer] = useState(CellValueEnum.X);
+	const [isGameWon, setIsGameWon] = useState(false);
+	const [endMessage, setEndMessage] = useState('');
+	const [movesLeft, setMovesLeft] = useState(8);
 
-	const updateBoard = (x: number, y: number, value: CellValueEnum) => {
-		const _board = [...board] as GameBoardModel;
-		_board[x][y] = value;
-		setBoard(_board);
+	const updateMovesLeft = () => {
+		if (movesLeft > 0) {
+			setMovesLeft(movesLeft - 1);
+		}
 	};
 
-	const [player, setPlayer] = useState(CellValueEnum.X);
+	const endGame = () => {
+		setIsGameWon((curr) => !curr);
+	};
+
+	const checkEndGame = (value: CellValueEnum | null) => {
+		if (value !== null) {
+			endGame();
+			writeEndMessage(value + ' have won');
+		} else if (movesLeft <= 0) {
+			endGame();
+			writeEndMessage("It's a tie");
+		}
+	};
+
+	const writeEndMessage = (message: string) => {
+		setEndMessage(message);
+	};
+
+	const updateBoard = (x: number, y: number, value: CellValueEnum) => {
+		if (board[x][y] === CellValueEnum.EMPTY) {
+			const _board = [...board] as GameBoardModel;
+			_board[x][y] = value;
+			setBoard(_board);
+			updateMovesLeft();
+		}
+	};
 
 	const updatePlayer = () => {
-		player === CellValueEnum.X ? setPlayer(CellValueEnum.O) : setPlayer(CellValueEnum.X);
+		setPlayer(player === CellValueEnum.X ? CellValueEnum.O : CellValueEnum.X);
 	};
 
 	const checkWinner = () => {
-		for (const condition of winningCondition) {
+		for (const condition of winningConditionCoordinates) {
 			const [firstCell, secondCell, thirdCell] = condition;
 
-			const firstCellValue = board[firstCell[0]][firstCell[1]];
-			const secondCellValue = board[secondCell[0]][secondCell[1]];
-			const thirdCellValue = board[thirdCell[0]][thirdCell[1]];
+			const [x1, y1] = firstCell;
+			const [x2, y2] = secondCell;
+			const [x3, y3] = thirdCell;
+
+			const firstCellValue = board[x1][y1];
+			const secondCellValue = board[x2][y2];
+			const thirdCellValue = board[x3][y3];
 
 			if (
 				firstCellValue !== CellValueEnum.EMPTY &&
@@ -50,20 +84,12 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 				firstCellValue === thirdCellValue
 			) {
 				return player;
-			} else if (move === 0) {
+			} else if (movesLeft === 0) {
 				return null;
 			}
 		}
 
 		return null;
-	};
-
-	const [move, setMove] = useState(8); // demander à titouan
-
-	const updateMove = () => {
-		if (move > 0) {
-			setMove(move - 1);
-		}
 	};
 
 	const context: GameContextModel = {
@@ -72,8 +98,9 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 		player,
 		updatePlayer,
 		checkWinner,
-		move,
-		updateMove
+		isGameWon,
+		checkEndGame,
+		endMessage
 	};
 
 	return <GameContext.Provider value={context}>{children}</GameContext.Provider>;
