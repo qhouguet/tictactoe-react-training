@@ -90,18 +90,6 @@ td[data-value='O'] {
 	background: #fcf4fd;
 } */
 
-.x-hover:hover::after {
-	content: 'X';
-	opacity: 0.5;
-	color: var(--main-color-1);
-}
-
-.o-hover:hover::after {
-	content: 'O';
-	opacity: 0.5;
-	color: var(--main-color-2);
-}
-
 tr:nth-child(2) {
 	border-width: 6px 0;
 	border-color: var(--grid-color);
@@ -143,5 +131,17 @@ tr td:nth-child(2) {
 
 	.ending-message {
 		font-size: 5rem;
+	}
+
+	.x-hover:hover::after {
+		content: 'X';
+		opacity: 0.5;
+		color: var(--main-color-1);
+	}
+
+	.o-hover:hover::after {
+		content: 'O';
+		opacity: 0.5;
+		color: var(--main-color-2);
 	}
 }
