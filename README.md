@@ -1,27 +1,87 @@
-# React + TypeScript + Vite
+<a name="readme-top"></a>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/qhouguet/tictactoe-react-training">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Expanding the ESLint configuration
+<h3 align="center">Tictactoe React Training by <a href="https://github.com/titouansola">Titouan Sola</a></h3>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  <p align="center">
+    This repository contains the code for a Tic-Tac-Toe game implemented in React. The exercise was created by <a href="https://github.com/titouansola">Titouan Sola</a>, my friend and mentor, to help me learn and practice React concepts such as custom hooks and context.
+    <br />    
+    <br />
+    <a href="https://not-a-tictactoe.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/qhouguet/tictactoe-react-training/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/qhouguet/tictactoe-react-training/issues">Request Feature</a>
+  </p>
+</div>
 
-- Configure the top-level `parserOptions` property like this:
+### Built With
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+* ReactJS
+* Vite
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+Install npm
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/qhouguet/tictactoe-react-training.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the project
+   ```sh
+   npm run dev
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## Contact
+
+HOUGUET Quentin - [@quentonar](https://twitter.com/quentonar) - contact@qhouguet.fr
+
+Project Link: [https://github.com/qhouguet/tictactoe-react-training](https://github.com/qhouguet/tictactoe-react-training)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/quentin-houguet-281a97275/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
