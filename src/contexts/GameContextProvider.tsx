@@ -42,7 +42,7 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 	const checkEndGame = (value: CellValueEnum | null) => {
 		if (value !== null) {
 			endGame();
-			writeEndMessage(value + ' have won');
+			writeEndMessage(value + ' has won');
 		} else if (movesLeft <= 0) {
 			endGame();
 			writeEndMessage("It's a tie");

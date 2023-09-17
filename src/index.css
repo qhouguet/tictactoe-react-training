@@ -1,5 +1,23 @@
+@font-face {
+	font-family: 'Raleway';
+	src: url(./fonts/Raleway-Regular.ttf);
+}
+
 * {
 	box-sizing: border-box;
+}
+
+:root {
+	--bg-gradient-1: #fff89a;
+	--bg-gradient-2: #ccf6c8;
+	--bg-gradient-3: #fdcedf;
+
+	--main-color-1: #7659b6;
+	--main-color-2: #e65722;
+
+	--grid-color: #3e5871;
+
+	font-size: 16px;
 }
 
 body {
@@ -8,19 +26,31 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	width: 100vw;
 	margin: 0;
-	font-family: sans-serif;
-	background: linear-gradient(324deg, #fff89a, #ccf6c8, #fdcedf);
+	font-family: 'Raleway';
+	background: linear-gradient(
+		324deg,
+		var(--bg-gradient-1),
+		var(--bg-gradient-2),
+		var(--bg-gradient-3)
+	);
 	background-size: 180% 180%;
 	animation: gradient-animation 21s ease infinite;
 }
 
+.game-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 table {
-	max-width: 800px;
-	max-height: 800px;
-	width: 70vw;
-	height: 70vw;
-	/* margin: auto; */
+	max-height: 65vh;
+	max-width: 65vh;
+	width: 90vw;
+	height: 90vw;
 	border-collapse: collapse;
 	border-radius: 20px;
 	overflow: hidden;
@@ -32,10 +62,9 @@ h2 {
 }
 
 td {
-	/* border: 2px solid black; */
 	cursor: pointer;
 	text-align: center;
-	font-size: 15vw;
+	font-size: 3rem;
 	width: calc(100% / 3);
 	height: calc(100% / 3);
 }
@@ -50,25 +79,39 @@ td:not([data-value='EMPTY']):after {
 }
 
 td[data-value='X'] {
-	color: #e286eb;
+	color: var(--main-color-1);
 }
 
 td[data-value='O'] {
-	color: #68c8ff;
+	color: var(--main-color-2);
 }
 
-td:hover {
+/* td:hover {
 	background: #fcf4fd;
+} */
+
+.x-hover:hover::after {
+	content: 'X';
+	opacity: 0.5;
+	color: var(--main-color-1);
+}
+
+.o-hover:hover::after {
+	content: 'O';
+	opacity: 0.5;
+	color: var(--main-color-2);
 }
 
 tr:nth-child(2) {
-	border-top: 0.9vw solid #3e5871;
-	border-bottom: 0.9vw solid #3e5871;
+	border-width: 6px 0;
+	border-color: var(--grid-color);
+	border-style: solid;
 }
 
 tr td:nth-child(2) {
-	border-left: 0.9vw solid #3e5871;
-	border-right: 0.9vw solid #3e5871;
+	border-width: 0 6px;
+	border-color: var(--grid-color);
+	border-style: solid;
 }
 
 .endgame {
@@ -76,7 +119,7 @@ tr td:nth-child(2) {
 }
 
 .ending-message {
-	font-size: 10vw;
+	font-size: 3rem;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -93,12 +136,12 @@ tr td:nth-child(2) {
 	}
 }
 
-@media screen and (min-width: 1142px) {
+@media screen and (min-width: 992px) {
 	td {
-		font-size: 200px;
+		font-size: 5rem;
 	}
 
 	.ending-message {
-		font-size: 113px;
+		font-size: 5rem;
 	}
 }
