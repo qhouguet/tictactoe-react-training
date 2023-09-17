@@ -83,7 +83,6 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 				firstCellValue === secondCellValue &&
 				firstCellValue === thirdCellValue
 			) {
-				console.log('here');
 				return player;
 			}
 		}
