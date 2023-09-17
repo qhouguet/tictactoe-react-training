@@ -63,7 +63,7 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 	};
 
 	const updatePlayer = () => {
-		setPlayer(player === CellValueEnum.X ? CellValueEnum.O : CellValueEnum.X);
+		setPlayer((player) => (player === CellValueEnum.X ? CellValueEnum.O : CellValueEnum.X));
 	};
 
 	const checkWinner = () => {
@@ -83,9 +83,8 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 				firstCellValue === secondCellValue &&
 				firstCellValue === thirdCellValue
 			) {
+				console.log('here');
 				return player;
-			} else if (movesLeft === 0) {
-				return null;
 			}
 		}
 
