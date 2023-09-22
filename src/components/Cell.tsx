@@ -1,5 +1,6 @@
-import { useGameContext } from '../hooks/useGameContext';
-import { CellValueEnum } from '../model/cell-value.enum';
+import { useGameContextReducer } from '../hooks/useGameContextReducer';
+import { ActionEnum } from '../model/enum/action.enum';
+import { CellValueEnum } from '../model/enum/cell-value.enum';
 
 type Props = {
 	x: number;
@@ -7,22 +8,27 @@ type Props = {
 };
 
 export function Cell({ x, y }: Props) {
-	const { board, updateBoard, player, updatePlayer, checkWinner, isGameWon, checkEndGame } =
-		useGameContext();
+	// const { board, updateBoard, player, updatePlayer, checkWinner, isGameWon, checkEndGame } =
+	// 	useGameContext();
+
+	const { state, dispatch } = useGameContextReducer();
 
 	const handleClick = () => {
-		updateBoard(x, y, player);
-		updatePlayer();
-		const winner = checkWinner();
-		checkEndGame(winner);
+		dispatch({ type: ActionEnum.UPDATE_BOARD, x: x, y: y, value: state.player });
+		dispatch({ type: ActionEnum.CHECK_ENDGAME });
+		dispatch({ type: ActionEnum.UPDATE_PLAYER });
+		// updateBoard(x, y, player);
+		// updatePlayer();
+
+		// checkEndGame(winner);
 	};
 
-	const cellValue = board[x][y];
+	const cellValue = state.board[x][y];
 
 	return (
 		<td
-			className={`${isGameWon ? 'endgame' : ''} ${
-				player === CellValueEnum.X ? 'x-hover' : 'o-hover'
+			className={`${state.isGameWon ? 'endgame' : ''} ${
+				state.player === CellValueEnum.X ? 'x-hover' : 'o-hover'
 			}`}
 			onClick={handleClick}
 			data-value={cellValue}

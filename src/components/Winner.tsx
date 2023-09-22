@@ -1,11 +1,12 @@
-import { useGameContext } from '../hooks/useGameContext';
+import { useGameContextReducer } from '../hooks/useGameContextReducer';
 
 export function Winner() {
-	const { endMessage, player } = useGameContext();
+	// const { endMessage, player } = useGameContext();
+	const { state } = useGameContextReducer();
 
-	if (endMessage.length > 0) {
-		return <h2 className="ending-message">{endMessage}</h2>;
+	if (state.endMessage.length > 0) {
+		return <h2 className="ending-message">{state.endMessage}</h2>;
 	} else {
-		return <h2 className="ending-message">{player} turn</h2>;
+		return <h2 className="ending-message">{state.player} turn</h2>;
 	}
 }
