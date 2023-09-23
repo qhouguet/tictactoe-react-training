@@ -16,11 +16,13 @@ export function Cell({ x, y }: Props) {
 	const handleClick = () => {
 		dispatch({ type: ActionEnum.UPDATE_BOARD, x: x, y: y, value: state.player });
 		dispatch({ type: ActionEnum.CHECK_ENDGAME });
-		dispatch({ type: ActionEnum.UPDATE_PLAYER });
-		// updateBoard(x, y, player);
-		// updatePlayer();
-
-		// checkEndGame(winner);
+		if (state.playerNumber === 2) {
+			dispatch({ type: ActionEnum.COMPUTER_PLAYING });
+			dispatch({ type: ActionEnum.UPDATE_BOARD_2P });
+			dispatch({ type: ActionEnum.CHECK_ENDGAME });
+		} else {
+			dispatch({ type: ActionEnum.UPDATE_PLAYER });
+		}
 	};
 
 	const cellValue = state.board[x][y];

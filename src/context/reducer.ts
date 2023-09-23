@@ -2,8 +2,9 @@ import { winningConditionCoordinates } from '../model/winning-condition-coordina
 import { CellValueEnum } from '../model/enum/cell-value.enum';
 import { ActionType, StateType } from './types';
 import { GameBoardModel } from '../model/game-board.model';
+import { getRandomElementFromArray } from './getRandomElementFromArray';
 
-export function reducer(state: StateType, action: ActionType): StateType {
+export function reducer(state: StateType, action: ActionType) {
 	const { type } = action;
 
 	switch (type) {
@@ -11,6 +12,16 @@ export function reducer(state: StateType, action: ActionType): StateType {
 			if (state.board[action.x][action.y] === CellValueEnum.EMPTY) {
 				const updatedBoard: GameBoardModel = [...state.board];
 				updatedBoard[action.x][action.y] = action.value;
+
+				if (state.playerNumber === 2) {
+					const xCoordinate = action.x;
+					const yCoordinate = action.y;
+
+					const updatedGridCoordinates = state.gridCoordinates.filter(
+						([x, y]) => x !== xCoordinate || y !== yCoordinate
+					);
+					state.gridCoordinates = updatedGridCoordinates;
+				}
 
 				if (state.movesLeft > 0) {
 					state.movesLeft -= 1;
@@ -22,6 +33,19 @@ export function reducer(state: StateType, action: ActionType): StateType {
 				};
 			}
 			return state;
+		case 'UPDATE_BOARD_2P': {
+			const [xCom, yCom] = state.computerMove;
+			// console.log(state.computerMove);
+
+			const updatedBoard: GameBoardModel = [...state.board];
+			updatedBoard[xCom][yCom] = CellValueEnum.O;
+
+			const updatedGridCoordinates = state.gridCoordinates.filter(
+				([x, y]) => x !== xCom || y !== yCom
+			);
+
+			return { ...state, board: updatedBoard, gridCoordinates: updatedGridCoordinates };
+		}
 		case 'UPDATE_PLAYER':
 			return {
 				...state,
@@ -58,6 +82,15 @@ export function reducer(state: StateType, action: ActionType): StateType {
 			}
 
 			return state;
+		case 'UPDATE_PLAYER_NUMBER':
+			return { ...state, playerNumber: action.number };
+		case 'COMPUTER_PLAYING': {
+			const updatedComputerMove = getRandomElementFromArray(state.gridCoordinates);
+			return {
+				...state,
+				computerMove: updatedComputerMove
+			};
+		}
 		default:
 			return state;
 	}
