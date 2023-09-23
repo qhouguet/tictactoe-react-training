@@ -3,6 +3,7 @@ import { CellValueEnum } from '../model/enum/cell-value.enum';
 import { ActionType, StateType } from './types';
 import { GameBoardModel } from '../model/game-board.model';
 import { getRandomElementFromArray } from './getRandomElementFromArray';
+import { initState } from './init-state';
 
 export function reducer(state: StateType, action: ActionType) {
 	const { type } = action;
@@ -10,10 +11,11 @@ export function reducer(state: StateType, action: ActionType) {
 	switch (type) {
 		case 'UPDATE_BOARD':
 			if (state.board[action.x][action.y] === CellValueEnum.EMPTY) {
-				const updatedBoard: GameBoardModel = [...state.board];
+				// const updatedBoard: GameBoardModel = [...state.board];
+				const updatedBoard: GameBoardModel = JSON.parse(JSON.stringify(state.board));
 				updatedBoard[action.x][action.y] = action.value;
 
-				if (state.playerNumber === 2) {
+				if (state.playerNumber === 1) {
 					const xCoordinate = action.x;
 					const yCoordinate = action.y;
 
@@ -23,29 +25,34 @@ export function reducer(state: StateType, action: ActionType) {
 					state.gridCoordinates = updatedGridCoordinates;
 				}
 
-				if (state.movesLeft > 0) {
-					state.movesLeft -= 1;
-				}
-
 				return {
 					...state,
-					board: updatedBoard
+					board: updatedBoard,
+					movesLeft: state.movesLeft > 0 ? state.movesLeft - 1 : state.movesLeft
 				};
 			}
 			return state;
-		case 'UPDATE_BOARD_2P': {
-			const [xCom, yCom] = state.computerMove;
-			// console.log(state.computerMove);
+		case 'UPDATE_BOARD_1P':
+			if (state.movesLeft > 0) {
+				const [xCom, yCom] = state.computerMove;
 
-			const updatedBoard: GameBoardModel = [...state.board];
-			updatedBoard[xCom][yCom] = CellValueEnum.O;
+				const updatedBoard = state.board.map((row, x) =>
+					row.map((cell, y) => (x === xCom && y === yCom ? state.player : cell))
+				) as GameBoardModel;
 
-			const updatedGridCoordinates = state.gridCoordinates.filter(
-				([x, y]) => x !== xCom || y !== yCom
-			);
+				const updatedGridCoordinates = state.gridCoordinates.filter(
+					([x, y]) => x !== xCom || y !== yCom
+				);
 
-			return { ...state, board: updatedBoard, gridCoordinates: updatedGridCoordinates };
-		}
+				return {
+					...state,
+					board: updatedBoard,
+					gridCoordinates: updatedGridCoordinates,
+					movesLeft: state.movesLeft > 0 ? state.movesLeft - 1 : state.movesLeft
+				};
+			}
+			return state;
+
 		case 'UPDATE_PLAYER':
 			return {
 				...state,
@@ -65,10 +72,11 @@ export function reducer(state: StateType, action: ActionType) {
 				];
 
 				if (cell1 !== CellValueEnum.EMPTY && cell1 === cell2 && cell1 === cell3) {
+					const winner = cell1;
 					return {
 						...state,
 						isGameWon: true,
-						endMessage: `${state.player} has won`
+						endMessage: `${winner} has won`
 					};
 				}
 			}
@@ -84,13 +92,17 @@ export function reducer(state: StateType, action: ActionType) {
 			return state;
 		case 'UPDATE_PLAYER_NUMBER':
 			return { ...state, playerNumber: action.number };
-		case 'COMPUTER_PLAYING': {
-			const updatedComputerMove = getRandomElementFromArray(state.gridCoordinates);
-			return {
-				...state,
-				computerMove: updatedComputerMove
-			};
-		}
+		case 'COMPUTER_PLAYING':
+			if (state.movesLeft > 0) {
+				const updatedComputerMove = getRandomElementFromArray(state.gridCoordinates);
+				return {
+					...state,
+					computerMove: updatedComputerMove
+				};
+			}
+			return state;
+		case 'RESET':
+			return initState;
 		default:
 			return state;
 	}

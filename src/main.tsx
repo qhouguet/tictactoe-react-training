@@ -7,7 +7,9 @@ import { GameContextReducerProvider } from './context/GameContextReducerProvider
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<GameContextReducerProvider>
-			<App />
+			<div className="game-container">
+				<App />
+			</div>
 		</GameContextReducerProvider>
 	</React.StrictMode>
 );

@@ -16,8 +16,9 @@ export type StateType = {
 
 export type ActionType =
 	| { type: ActionEnum.UPDATE_BOARD; x: number; y: number; value: CellValueEnum }
-	| { type: ActionEnum.UPDATE_BOARD_2P }
+	| { type: ActionEnum.UPDATE_BOARD_1P }
 	| { type: ActionEnum.UPDATE_PLAYER }
 	| { type: ActionEnum.CHECK_ENDGAME }
 	| { type: ActionEnum.UPDATE_PLAYER_NUMBER; number: number }
-	| { type: ActionEnum.COMPUTER_PLAYING };
+	| { type: ActionEnum.COMPUTER_PLAYING }
+	| { type: ActionEnum.RESET };
