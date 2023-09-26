@@ -20,7 +20,7 @@ export function Reset() {
 	};
 
 	return (
-		<div className="sm:flex sm:mt-10 lg:min-h-full lg:m-0 lg:flex-col">
+		<div className="sm:flex sm:mt-10 lg:min-h-full lg:m-0 lg:flex-col lg:my-5">
 			<button
 				className="default-button shadow-custom hover:bg-brutal-pink bg-slate-100 border-solid border-black border-4 py-5 sm:mr-4 lg:my-0 lg:py-0 lg:h-full lg:mb-10"
 				onClick={() => handleAction('PLAY_AGAIN')}
