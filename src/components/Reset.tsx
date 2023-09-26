@@ -20,13 +20,19 @@ export function Reset() {
 	};
 
 	return (
-		<>
-			<button className="button-reset" onClick={() => handleAction('PLAY_AGAIN')}>
+		<div className="sm:flex sm:mt-10 lg:min-h-full lg:m-0 lg:flex-col">
+			<button
+				className="default-button shadow-custom hover:bg-brutal-pink bg-slate-100 border-solid border-black border-4 py-5 sm:mr-4 lg:my-0 lg:py-0 lg:h-full lg:mb-10"
+				onClick={() => handleAction('PLAY_AGAIN')}
+			>
 				PLAY AGAIN
 			</button>
-			<button className="button-reset" onClick={() => handleAction('RESET_SCORE')}>
+			<button
+				className="default-button shadow-custom hover:bg-brutal-pink  bg-slate-100 border-solid border-black border-4 py-5 lg:py-0 lg:my-0 lg:h-full"
+				onClick={() => handleAction('RESET_SCORE')}
+			>
 				RESET SCORE
 			</button>
-		</>
+		</div>
 	);
 }

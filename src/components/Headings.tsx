@@ -1,23 +1,35 @@
 import { useGameContextReducer } from '../hooks/useGameContextReducer';
+import { CellValueEnum } from '../model/enum/cell-value.enum';
 
 export function Headings() {
 	const { state } = useGameContextReducer();
 
 	return (
-		// <h2 className="ending-message">
-		// 	{state.endMessage.length > 0 ? state.endMessage : `${state.player} turn`}
-		// </h2>
+		<div className="flex flex-col sm:flex-row">
+			<div
+				className={`flex flex-col justify-center items-center [&>*]:uppercase [&>*]:py-1.5 ${
+					state.player === CellValueEnum.X ? 'bg-brutal-green' : 'bg-white'
+				} w-full border-y-4 border-transparent -mt-1 sm:mt-0 sm:border-b-4 sm:border-t-0 sm:border-black sm:border-solid`}
+			>
+				<div className="flex text-4xl font-black">
+					{state.player === CellValueEnum.X ? <span className="-mt-0.5 mr-2">{'>'}</span> : ''}
+					<h2>Player 1</h2>
+				</div>
 
-		<>
-			<div>
-				<h2 className="ending-message">Player 2</h2>
-				<h2 className="ending-message">Player 1</h2>
+				<h3 className="font-normal">Win : {state.xWin}</h3>
 			</div>
-			<h2 className="ending-message">{state.endMessage.length > 0 && state.endMessage}</h2>
-			<div>
-				<h3>{state.xWin}</h3>
-				<h3>{state.oWin}</h3>
+			<div
+				className={`flex flex-col justify-center items-center [&>*]:uppercase [&>*]:py-1.5 ${
+					state.player === CellValueEnum.O ? 'bg-brutal-pink' : 'bg-white'
+				} w-full border-solid border-black border-y-4 -mt-1 sm:mt-0 sm:border-t-0 sm:border-l-4 sm:-ml-4`}
+			>
+				<div className="flex text-4xl font-black">
+					{state.player === CellValueEnum.O ? <span className="-mt-0.5 mr-2">{'>'}</span> : ''}
+					<h2>Player 2</h2>
+				</div>
+
+				<h3 className="font-normal">Win : {state.oWin}</h3>
 			</div>
-		</>
+		</div>
 	);
 }

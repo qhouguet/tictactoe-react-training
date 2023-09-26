@@ -40,9 +40,11 @@ export function Cell({ x, y }: Props) {
 
 	return (
 		<td
-			className={`${preventClick ? 'endgame' : ''} ${
-				state.player === CellValueEnum.X ? 'x-hover' : 'o-hover'
-			}`}
+			className={`${preventClick ? 'pointer-events-none' : ''} ${
+				state.player === CellValueEnum.X
+					? 'after:hover:content-["X"] hover:after:text-brutal-green'
+					: 'after:hover:content-["O"] hover:after:text-brutal-pink'
+			} text-black font-black data-[value='X']:bg-brutal-green data-[value='O']:bg-brutal-pink cursor-pointer w-1/3 h-1/3 text-5xl lg:text-8xl text-center`}
 			onClick={handleClick}
 			data-value={cellValue}
 		/>
