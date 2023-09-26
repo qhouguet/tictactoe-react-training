@@ -11,5 +11,7 @@ export const initState: StateType = {
 	movesLeft: 9,
 	playerNumber: 0,
 	gridCoordinates: gridCoordinates,
-	computerMove: [0, 0]
+	computerMove: [0, 0],
+	xWin: 0,
+	oWin: 0
 };

@@ -13,9 +13,13 @@ export function GameMode() {
 	};
 
 	return (
-		<div>
-			<button onClick={handleClickOnePlayer}>MODE 1 JOUEUR</button>
-			<button onClick={handleClickTwoPlayers}>MODE 2 JOUEUR</button>
+		<div className="button-container">
+			<button className="button-game-mode" onClick={handleClickOnePlayer}>
+				1 PLAYER
+			</button>
+			<button className="button-game-mode" onClick={handleClickTwoPlayers}>
+				2 PLAYERS
+			</button>
 		</div>
 	);
 }

@@ -8,5 +8,9 @@ export function Reset() {
 		dispatch({ type: ActionEnum.RESET });
 	};
 
-	return <button onClick={handleReset}>RESET</button>;
+	return (
+		<button className="button-reset" onClick={handleReset}>
+			RESET
+		</button>
+	);
 }

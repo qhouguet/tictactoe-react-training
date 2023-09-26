@@ -12,13 +12,15 @@ export type StateType = {
 	playerNumber: number;
 	gridCoordinates: Coordinate[];
 	computerMove: [number, number];
+	xWin: number;
+	oWin: number;
 };
 
 export type ActionType =
-	| { type: ActionEnum.UPDATE_BOARD; x: number; y: number; value: CellValueEnum }
-	| { type: ActionEnum.UPDATE_BOARD_1P }
-	| { type: ActionEnum.UPDATE_PLAYER }
+	| { type: ActionEnum.PLAYER_UPDATE_BOARD; x: number; y: number; value: CellValueEnum }
+	| { type: ActionEnum.COMPUTER_UPDATE_BOARD }
+	| { type: ActionEnum.CHANGE_PLAYER }
 	| { type: ActionEnum.CHECK_ENDGAME }
 	| { type: ActionEnum.UPDATE_PLAYER_NUMBER; number: number }
-	| { type: ActionEnum.COMPUTER_PLAYING }
-	| { type: ActionEnum.RESET };
+	| { type: ActionEnum.RESET }
+	| { type: ActionEnum.UPDATE_SCORE };

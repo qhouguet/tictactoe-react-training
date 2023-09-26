@@ -1,7 +1,6 @@
 import { useGameContextReducer } from '../hooks/useGameContextReducer';
 
 export function Winner() {
-	// const { endMessage, player } = useGameContext();
 	const { state } = useGameContextReducer();
 
 	if (state.endMessage.length > 0) {
