@@ -14,6 +14,7 @@ export function Cell({ x, y }: Props) {
 		dispatch({ type: ActionEnum.PLAYER_UPDATE_BOARD, x, y, value: state.player });
 		dispatch({ type: ActionEnum.CHECK_ENDGAME });
 		dispatch({ type: ActionEnum.CHANGE_PLAYER });
+		dispatch({ type: ActionEnum.UPDATE_SCORE });
 	};
 
 	const handleComputerTurn = () => {
@@ -21,6 +22,7 @@ export function Cell({ x, y }: Props) {
 			dispatch({ type: ActionEnum.COMPUTER_UPDATE_BOARD });
 			dispatch({ type: ActionEnum.CHECK_ENDGAME });
 			dispatch({ type: ActionEnum.CHANGE_PLAYER });
+			dispatch({ type: ActionEnum.UPDATE_SCORE });
 		}, 300);
 	};
 
@@ -30,8 +32,6 @@ export function Cell({ x, y }: Props) {
 		if (state.playerNumber === 1) {
 			handleComputerTurn();
 		}
-
-		dispatch({ type: ActionEnum.UPDATE_SCORE });
 	};
 
 	const cellValue = state.board[x][y];
