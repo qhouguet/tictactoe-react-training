@@ -1,5 +1,5 @@
 import { Board } from './components/Board.tsx';
-import { Winner } from './components/Winner.tsx';
+import { Headings } from './components/Headings.tsx';
 import { GameMode } from './components/GameMode.tsx';
 import { useGameContextReducer } from './hooks/useGameContextReducer.ts';
 import { Reset } from './components/Reset.tsx';
@@ -12,7 +12,7 @@ export function App() {
 	} else {
 		return (
 			<>
-				<Winner />
+				<Headings />
 				<Board />
 				<Reset />
 			</>

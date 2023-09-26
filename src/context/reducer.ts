@@ -76,7 +76,7 @@ export function reducer(state: StateType, action: ActionType) {
 				];
 
 				if (cell1 !== CellValueEnum.EMPTY && cell1 === cell2 && cell1 === cell3) {
-					const winner = cell1;
+					const winner = cell1 === CellValueEnum.X ? 'Player 1' : 'Player 2';
 					return {
 						...state,
 						isGameWon: true,
@@ -98,7 +98,20 @@ export function reducer(state: StateType, action: ActionType) {
 			return { ...state, playerNumber: action.number };
 		case 'RESET':
 			return initState;
+		case 'GET_SCORE': {
+			const xScore = JSON.parse(localStorage.getItem('xscore') || '0');
+			const oScore = JSON.parse(localStorage.getItem('oscore') || '0');
+			return { ...state, xWin: xScore, oWin: oScore };
+		}
 		case 'UPDATE_SCORE':
+			if (state.isGameWon && state.endMessage !== '' && state.endMessage !== "It's a tie") {
+				let xWinCopy = state.xWin;
+				let oWinCopy = state.oWin;
+				state.player === CellValueEnum.X ? (xWinCopy += 1) : (oWinCopy += 1);
+				localStorage.setItem('xscore', JSON.stringify(xWinCopy));
+				localStorage.setItem('oscore', JSON.stringify(oWinCopy));
+				return { ...state, xWin: xWinCopy, oWin: oWinCopy };
+			}
 			return state;
 		default:
 			return state;

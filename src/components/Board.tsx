@@ -1,8 +1,15 @@
 import { useGameContextReducer } from '../hooks/useGameContextReducer';
 import { Cell } from './Cell';
+import { ActionEnum } from '../model/enum/action.enum';
+import { useEffect } from 'react';
 
 export function Board() {
-	const { state } = useGameContextReducer();
+	const { state, dispatch } = useGameContextReducer();
+
+	useEffect(() => {
+		dispatch({ type: ActionEnum.GET_SCORE });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<table>

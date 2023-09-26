@@ -23,4 +23,5 @@ export type ActionType =
 	| { type: ActionEnum.CHECK_ENDGAME }
 	| { type: ActionEnum.UPDATE_PLAYER_NUMBER; number: number }
 	| { type: ActionEnum.RESET }
+	| { type: ActionEnum.GET_SCORE }
 	| { type: ActionEnum.UPDATE_SCORE };
