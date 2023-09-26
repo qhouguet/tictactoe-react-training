@@ -12,7 +12,7 @@ export function Board() {
 	}, []);
 
 	return (
-		<div className="relative w-full mx-auto lg:mr-10">
+		<div className="relative w-full mx-auto my-5 lg:mr-10">
 			{state.endMessage.length > 0 ? (
 				<>
 					<h2 className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-3xl lg:text-5xl text-white text-center w-full px-2 font-black z-50">
@@ -23,7 +23,7 @@ export function Board() {
 			) : (
 				<></>
 			)}
-			<table className="bg-white w-full aspect-square border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-5 lg:my-0">
+			<table className="bg-white w-full aspect-square border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-0">
 				<tbody>
 					{state.board.map((row, x) => (
 						<tr className="[&>*]:border-4 [&>*]:border-solid [&>*]:border-black" key={x}>
