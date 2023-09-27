@@ -55,7 +55,7 @@ td:not([data-value='EMPTY']):after {
 	height: 90vw;
 }
 
-@media (hover: hover) {
+/* @media (hover: hover) {
 	.ohover:hover::after {
 		content: 'O';
 		opacity: 0.5;
@@ -67,4 +67,4 @@ td:not([data-value='EMPTY']):after {
 		opacity: 0.5;
 		color: #90ee90;
 	}
-}
+} */
