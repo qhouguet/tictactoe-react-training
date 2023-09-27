@@ -25,7 +25,9 @@ export function App() {
 					<Board />
 					<Reset />
 				</div>
-				<h3 className="mb-4 text-sm font-black mx-auto">Copyright © 2023, Houguet Quentin</h3>
+				<h3 className="mb-4 text-sm font-black mx-auto text-center">
+					Copyright © 2023, Houguet Quentin
+				</h3>
 			</div>
 		);
 	}

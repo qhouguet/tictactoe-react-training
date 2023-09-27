@@ -3,6 +3,14 @@ export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			maxWidth: {
+				desktop: '44rem'
+			},
+			maxHeight: {
+				xl: '36rem',
+				lg: '32rem',
+				desktop: '44rem'
+			},
 			fontFamily: {
 				sans: ['LexendMega']
 			},
