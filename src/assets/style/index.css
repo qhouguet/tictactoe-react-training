@@ -49,3 +49,9 @@ td:not([data-value='EMPTY']):after {
 .default-button {
 	@apply hover:-translate-y-1 w-full my-5 text-4xl duration-200 text-black;
 }
+
+.ptrick:after {
+	content: '';
+	display: block;
+	padding-bottom: 100%;
+}

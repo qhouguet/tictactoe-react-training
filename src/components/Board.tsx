@@ -23,17 +23,19 @@ export function Board() {
 			) : (
 				<></>
 			)}
-			<table className="bg-white w-full aspect-square border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-0">
-				<tbody className="w-full aspect-square">
-					{state.board.map((row, x) => (
-						<tr className="[&>*]:border-4 [&>*]:border-solid [&>*]:border-black" key={x}>
-							{row.map((_, y) => (
-								<Cell key={y} x={x} y={y} />
-							))}
-						</tr>
-					))}
-				</tbody>
-			</table>
+			<div className="relative ptrick w-full">
+				<table className="bg-white w-full h-full absolute border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-0">
+					<tbody className="w-full aspect-square">
+						{state.board.map((row, x) => (
+							<tr className="[&>*]:border-4 [&>*]:border-solid [&>*]:border-black" key={x}>
+								{row.map((_, y) => (
+									<Cell key={y} x={x} y={y} />
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 }
