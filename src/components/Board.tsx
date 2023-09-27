@@ -18,13 +18,13 @@ export function Board() {
 					<h2 className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-3xl lg:text-5xl text-white text-center w-full px-2 font-black z-50">
 						{state.endMessage}
 					</h2>
-					<div className="w-full aspect-square absolute bg-black opacity-90"></div>
+					<div className="SQUARE max-w-xl max-h-xl sm:max-w-lg sm:max-h-lg aspect-square top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 absolute bg-black opacity-90 lg:max-w-desktop lg:max-h-desktop"></div>
 				</>
 			) : (
 				<></>
 			)}
 
-			<table className="bg-white max-w-xl max-h-xl sm:max-w-lg sm:max-h-lg lg:max-w-desktop lg:max-h-desktop SQUARE border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-0 mx-auto">
+			<table className="SQUARE bg-white max-w-xl max-h-xl sm:max-w-lg sm:max-h-lg lg:max-w-desktop lg:max-h-desktop  border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-0 mx-auto">
 				<tbody>
 					{state.board.map((row, x) => (
 						<tr className="[&>*]:border-4 [&>*]:border-solid [&>*]:border-black" key={x}>
