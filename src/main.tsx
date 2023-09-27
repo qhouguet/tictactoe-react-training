@@ -7,7 +7,7 @@ import { GameContextReducerProvider } from './context/GameContextReducerProvider
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<GameContextReducerProvider>
-			<div className="bg-brutal-bg flex flex-col items-center min-w-screen min-h-screen lg:max-h-screen">
+			<div className="bg-brutal-bg flex flex-col items-center min-w-screen min-h-screen">
 				<App />
 			</div>
 		</GameContextReducerProvider>
