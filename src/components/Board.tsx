@@ -24,7 +24,7 @@ export function Board() {
 				<></>
 			)}
 			<table className="bg-white w-full aspect-square border-4 border-solid border-black  border-collapse border-spacing-0 shadow-custom my-0">
-				<tbody>
+				<tbody className="w-full aspect-square">
 					{state.board.map((row, x) => (
 						<tr className="[&>*]:border-4 [&>*]:border-solid [&>*]:border-black" key={x}>
 							{row.map((_, y) => (
